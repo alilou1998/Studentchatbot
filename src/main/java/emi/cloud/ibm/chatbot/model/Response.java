@@ -4,13 +4,23 @@ public class Response {
 
     String link;
     String ecoleDescription;
+    String specialiteDetails;
 
-    public Response(String link,String ecoleDescription) {
+    public Response(String link,String ecoleDescription,String specialiteDetails) {
         this.ecoleDescription= ecoleDescription;
         this.link = link;
+        this.specialiteDetails=specialiteDetails;
     }
 
     public Response() {
+    }
+
+    public String getSpecialiteDetails() {
+        return specialiteDetails;
+    }
+
+    public void setSpecialiteDetails(String specialiteDetails) {
+        this.specialiteDetails = specialiteDetails;
     }
 
     public String getEcoleDescription() {

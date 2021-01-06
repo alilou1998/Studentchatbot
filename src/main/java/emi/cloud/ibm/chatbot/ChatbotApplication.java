@@ -1,5 +1,6 @@
 package emi.cloud.ibm.chatbot;
 
+import emi.cloud.ibm.chatbot.beans.SpecialitesDetails;
 import emi.cloud.ibm.chatbot.dao.ReponseDao;
 import emi.cloud.ibm.chatbot.model.Reponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,17 +8,20 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.util.ArrayList;
+import java.util.List;
 
 @SpringBootApplication
 public class ChatbotApplication implements CommandLineRunner {
 
     private final ReponseDao reponseDao;
 
+
+
     @Autowired
     public ChatbotApplication(ReponseDao reponseDao) {
         this.reponseDao = reponseDao;
     }
+
 
 
     public static void main(String[] args) {
