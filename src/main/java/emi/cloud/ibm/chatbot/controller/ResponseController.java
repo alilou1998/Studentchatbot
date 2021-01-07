@@ -73,7 +73,7 @@ public class ResponseController {
             List<AdmissionDetails> details = admissionDetailsList.stream().filter(c->
                             c.getAdmission().equals(request.getTypeAdmission()) && c.getSpec().equals(request.getSpec())
                     ).collect(Collectors.toList());
-            return new Response("", "", details.get(0).getAdmission());
+            return new Response("", "", details.get(0).getSchools());
         }else {
             return null;
         }
