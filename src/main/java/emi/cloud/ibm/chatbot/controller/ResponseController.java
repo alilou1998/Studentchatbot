@@ -4,6 +4,7 @@ package emi.cloud.ibm.chatbot.controller;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlElement;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
+import emi.cloud.ibm.chatbot.beans.AdmissionDetails;
 import emi.cloud.ibm.chatbot.beans.SpecialitesDetails;
 import emi.cloud.ibm.chatbot.dao.ReponseDao;
 import emi.cloud.ibm.chatbot.model.Reponse;
@@ -18,7 +19,6 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
-import java.util.Random;
 import java.util.stream.Collectors;
 
 
@@ -33,6 +33,9 @@ public class ResponseController {
 
     @Autowired
     List<SpecialitesDetails> specialitesDetailsList;
+
+    @Autowired
+    List<AdmissionDetails> admissionDetailsList;
 
     @Autowired
     public ResponseController(ReponseDao reponseDao) {
@@ -55,21 +58,28 @@ public class ResponseController {
             String URL = "https://duckduckgo.com/?q=" + request.getEcole() + "+9rayti";
             logger.info(decodeValue(scrappingMethod(URL, request)));
             return new Response("", decodeValue(scrappingMethod(URL, request)), "");
-        } else {
+        } else if (request.getSpec() != null && request.getTypeAdmission()==null) {
             List<SpecialitesDetails> details = specialitesDetailsList.stream().filter(e ->
                     e.getSpec().equals(request.getSpec())
             ).collect(Collectors.toList());
-            return new Response("","",details.get(0).getResponse());
+            return new Response("", "", details.get(0).getResponse());
 //            Random r = new Random();
 //            Reponse reponse = reponseDao.findBySpec(request.getSpec());
 //            int max = reponse.getLinks().size();
 //            int random = r.ints(0, (max)).limit(1).findFirst().getAsInt();
 //            logger.info("Index " + random);
 //            return new Response(reponseDao.findBySpec(request.getSpec()).getLinks().get(random), "");
-
+        }else if(request.getSpec() != null && request.getTypeAdmission()!=null){
+            List<AdmissionDetails> details = admissionDetailsList.stream().filter(c->
+                            c.getAdmission().equals(request.getTypeAdmission()) && c.getSpec().equals(request.getSpec())
+                    ).collect(Collectors.toList());
+            return new Response("", "", details.get(0).getAdmission());
+        }else {
+            return null;
         }
-
     }
+
+
 
     public static String decodeValue(String value) {
         try {
