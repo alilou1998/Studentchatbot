@@ -59,4 +59,28 @@ public class DataSet {
         return new ArrayList<>(Arrays.asList(details1,details2,details3,details4,details5,details6));
     }
 
+    @Bean
+    public List<Website> getWebsites(){
+
+        Website link1= new Website("EST","www.9rayti.com/groupe/est");
+        Website link2= new Website("ENA","www.9rayti.com/ecole/ena-architecture");
+        Website link3= new Website("ENCG","www.9rayti.com/groupe/encg");
+        Website link4= new Website("ENFI","www.9rayti.com/ecole/enfi");
+        Website link5= new Website("ENS","www.9rayti.com/groupe/ens");
+        Website link6= new Website("ENSA","www.9rayti.com/groupe/ensa");
+        Website link7= new Website("ENSAM","www.9rayti.com/groupe/ensam");
+        Website link8= new Website("ENSET","www.9rayti.com/groupe/enset");
+        Website link9= new Website("ESITH","www.9rayti.com/ecole/esith");
+        Website link10= new Website("FSE","www.9rayti.com/ecole/fse-rabat");
+        Website link11= new Website("FST","www.9rayti.com/groupe/fst");
+        Website link12= new Website("INSAP","www.9rayti.com/ecole/insap");
+        Website link13= new Website("ISMAC","www.9rayti.com/ecole/ismac-rabat");
+
+
+        return new ArrayList<>(Arrays.asList(
+                                link1,link2,link3,link4,link5,link6,link7,link8,link9,link10,link11,link12,link13
+        ));
+
+    }
+
 }
